@@ -1,0 +1,38 @@
+version: '2'
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+    restart: unless-stopped
+    networks:
+      - kafka
+  kafka:
+    build:
+      context: .
+      dockerfile: ./kafka/Dockerfile
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092"
+    networks:
+      - kafka
+    environment:
+      DOCKER_API_VERSION: 1.22
+      #KAFKA_ADVERTISED_HOST_NAME: 192.168.1.80
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      #KAFKA_ADVERTISED_LISTENERS: INSIDE://:9092,OUTSIDE://_{HOSTNAME_COMMAND}:9094
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://:9092,OUTSIDE://192.168.1.80:9094
+      KAFKA_LISTENERS: INSIDE://:9092,OUTSIDE://:9094
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+      KAFKA_CREATE_TOPICS: "winlogbeat:1:1"
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+
+networks:
+  kafka:
+    driver: bridge
+
+
