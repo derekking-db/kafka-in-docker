@@ -21,7 +21,7 @@ fi
 
 # Executing docker-compose
 echo "Executing docker compose: ./docker/docker-compose.yml"
-docker compose -f docker/docker-compose.yml up -d
+docker-compose -f docker/docker-compose.yml up -d
 ERROR=$?
 if [ $ERROR -ne 0 ]
     then
