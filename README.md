@@ -23,6 +23,14 @@ cd kafka-in-docker
 sudo ./install.sh
 ```
 
+If you want to have the instance install and run kafka instantly run the following in from the ec2 userdata section.
+
+```
+git clone https://github.com/DerekKing001/kafka-in-docker.git 1>>/var/log/install.log 2>&1
+cd kafka-in-docker 1>>/var/log/install.log 2>&1
+sudo ./install.sh 1>>/var/log/install.log 2>&1
+```
+
 ### Checking and Testing the Installation
 Once installed, you'll probably want to check a few things out. Logon to the host via ssh.
 
