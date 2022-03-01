@@ -8,8 +8,10 @@ The config is currently set for readers of the Databricks blog 'Ingesting Window
 
 Best installed on a fresh AWS instance since it uses the metadata service to configure advertised.listener. If you want to run this somewhere else, change the docker-compose.yml file.
 
-* Create an EC2 Instance, with a MIMIMUM of 16GB Ram. Anything less will fail the install.
+* Create an EC2 Instance, with a MINIMUM of 16GB Ram. Anything less will fail the install.
 * If you plan to send data to the Kafka server from outside of the cloud provider, create an inbound security group rule for TCP 9094.
+
+I have tested this on t2.xlarge Ubuntu 20.04 which works for my purposes. 
 
 ## Installation
 
@@ -22,15 +24,49 @@ sudo ./install.sh
 ```
 
 ### Checking and Testing the Installation
+Once installed, you'll probably want to check a few things out. Logon to the host via ssh.
+
+**Example EC2 based on ubuntu**
+
+```ssh -i <pem_file> ubuntu@<hostname>```
 
 ## Is my docker env running?
 
 ```sudo docker ps```
 
-## Run a shell on the Kafka Server
-```sudo docker exec -it ```
+## Check the logs
 
-## Were the topics created OK?
+```sudo docker logs --follow docker-kafka-1```
+
+## Run a shell on the Kafka Server
+```sudo docker exec -it docker-kafka-1 bash```
+
+## Testing the topics created OK?
+
+After running a shell on the kafka container
+
+```
+cd /opt/kafka/bin
+./kafka-topics.sh --bootstrap-server <hostname> --list
+```
+By default, the compose file is setup to create the 'winlogbeat' topic only. 
+
+## Produce a test message
+
+from /opt/kafka/bin
+
+``` ./kafka-console-producer.sh --bootstrap-server <hostname>:9094 --topic winlogbeat```
+
+input is received until CTRL-d
+
+## Consume the test message
+
+from /opt/kafka/bin
+
+```./kafka-console-consumer.sh --bootstrap-server <hostname>:9094 --topic winlogbeat --from-beginning```
+
+
+
 
 
 

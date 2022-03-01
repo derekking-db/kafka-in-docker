@@ -26,7 +26,6 @@ if $start_timeout_exceeded; then
     exit 1
 fi
 
-# introduced in 0.10. In earlier versions, this will fail because the topic already exists.
 # shellcheck disable=SC1091
 source "/usr/bin/versions.sh"
 if [[ "$MAJOR_VERSION" == "0" && "$MINOR_VERSION" -gt "9" ]] || [[ "$MAJOR_VERSION" -gt "0" ]]; then
