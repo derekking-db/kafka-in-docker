@@ -6,6 +6,8 @@ This build has been put together as part of the Databricks blog demonstrating a 
 
 You can use it to quickly spin up an instance of kafka for testing purposes. Please DO NOT try using it for production use cases. It works for my simple needs, and will work for readers of the blog researching how to re-create the simple architecture. 
 
+<img src="docs/images/architecture.png" width="200" height="100">
+
 ## Pre-Requisites
 
 Best installed on a fresh AWS instance since it uses the metadata service to configure advertised.listener. If you want to run this somewhere else, change the docker-compose.yml file.
