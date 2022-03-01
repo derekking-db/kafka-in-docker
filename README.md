@@ -6,6 +6,8 @@ This build has been put together as part of the Databricks blog demonstrating a 
 
 You can use it to quickly spin up an instance of kafka for testing purposes. Please DO NOT try using it for production use cases. It works for my simple needs, and will work for readers of the blog researching how to re-create the simple architecture. 
 
+> :bulb: **Remember:** This should be used for testing only 
+
 <img src="docs/images/architecture.png">
 
 ## Pre-Requisites
