@@ -38,18 +38,18 @@ Once installed, you'll probably want to check a few things out. Logon to the hos
 
 ```ssh -i <pem_file> ubuntu@<hostname>```
 
-## Is my docker env running?
+#### Is my docker env running?
 
 ```sudo docker ps```
 
-## Check the logs
+#### Check the logs
 
 ```sudo docker logs --follow docker-kafka-1```
 
-## Run a shell on the Kafka Server
+#### Run a shell on the Kafka Server
 ```sudo docker exec -it docker-kafka-1 bash```
 
-## Testing the topics created OK?
+#### Testing the topics created OK?
 
 After running a shell on the kafka container
 
@@ -59,7 +59,7 @@ cd /opt/kafka/bin
 ```
 By default, the compose file is setup to create the 'winlogbeat' topic only. 
 
-## Produce a test message
+#### Produce a test message
 
 from /opt/kafka/bin
 
@@ -67,11 +67,30 @@ from /opt/kafka/bin
 
 input is received until CTRL-d
 
-## Consume the test message
+#### Consume the test message
 
 from /opt/kafka/bin
 
 ```./kafka-console-consumer.sh --bootstrap-server <hostname>:9094 --topic winlogbeat --from-beginning```
+
+## Configuration
+
+Use the docker-compose.yml file to pass in kafka variables if needed. 
+
+### Topics
+
+Initially the topic winlogbeat will be configured. If you want to add more topics, amend the KAFKA_CREATE_TOPICS accordingly. This is a comma separated config
+
+```KAFKA_CREATE_TOPICS: "winlogbeat:1:1, an-other-topic:1:1"```
+
+where: 1:1 corresponds to the partition(s), and replica(s) you want.
+
+### Listening Ports
+
+The compose file is set to expose TCP 9092 for the internal listener, and 9094 for the external. Make sure when producing or consuming messages you use the external listening port (9094).
+
+
+
 
 
 
