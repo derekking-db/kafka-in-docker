@@ -81,7 +81,11 @@ Use the docker-compose.yml file to pass in kafka variables if needed.
 
 Initially the topic winlogbeat will be configured. If you want to add more topics, amend the KAFKA_CREATE_TOPICS accordingly. This is a comma separated config
 
-```KAFKA_CREATE_TOPICS: "winlogbeat:1:1, an-other-topic:1:1"```
+```
+
+KAFKA_CREATE_TOPICS: "winlogbeat:1:1, an-other-topic:1:1"
+
+```
 
 where: 1:1 corresponds to the partition(s), and replica(s) you want.
 
