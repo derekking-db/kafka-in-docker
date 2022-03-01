@@ -8,6 +8,7 @@ You can use it to quickly spin up an instance of kafka for testing purposes. Ple
 
 > :bulb: **Remember:** This should be used for testing only 
 
+
 <img src="docs/images/architecture.png">
 
 ## Pre-Requisites
