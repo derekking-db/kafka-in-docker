@@ -14,7 +14,8 @@ services:
     depends_on:
       - zookeeper
     ports:
-      - "9092"
+      - "9092:9092"
+      - "9094:9094"
     networks:
       - kafka
     environment:
