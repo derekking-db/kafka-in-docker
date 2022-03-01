@@ -23,12 +23,12 @@ ENV KAFKA_VERSION=$kafka_version \
 ENV PATH=${PATH}:${KAFKA_HOME}/bin
 
 COPY /scripts/download-kafka.sh /tmp/
-COPY /scripts/docker-install.sh /scripts/start-kafka.sh /scripts/broker-list.sh /scripts/create-topics.sh /scripts/versions.sh /tmp/
+COPY /scripts/start-kafka.sh /scripts/broker-list.sh /scripts/create-topics.sh /scripts/versions.sh /tmp/
 
 RUN apk add --no-cache bash curl jq docker \
  && chmod a+x /tmp/*.sh \
  && mv /tmp/start-kafka.sh /tmp/broker-list.sh /tmp/create-topics.sh /tmp/versions.sh /usr/bin \
- && sync && /tmp/docker-install.sh && /tmp/download-kafka.sh \
+ && sync && /tmp/download-kafka.sh \
  && tar xfz /tmp/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz -C /opt \
  && rm /tmp/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz \
  && ln -s /opt/kafka_${SCALA_VERSION}-${KAFKA_VERSION} ${KAFKA_HOME} \
