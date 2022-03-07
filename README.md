@@ -22,6 +22,13 @@ I have tested this on t2.xlarge Ubuntu 20.04 which works for my purposes.
 
 ## Installation
 
+There are two ways to install. 
+1) Create your own infrastructure and manually install by cloning the repo and executing the install script.
+2) Clone the repo onto your local machine, and execute the terraform scripts (assuming you have installed terraform already)
+
+### Manual Installation
+Once you have created an EC2 instance.
+
 The install.sh script will download and install docker, docker-compose and everything else you need to get up and running. You'll need to download the repo and execute the install script however.
 
 ```
@@ -38,7 +45,14 @@ cd kafka-in-docker 1>>/var/log/install.log 2>&1
 sudo ./install.sh 1>>/var/log/install.log 2>&1
 ```
 
-### Checking and Testing the Installation
+### Terraform
+1) Clone the repo onto your local machine
+2) Make sure you already have terraform installed (```brew install terraform```) or your chosen package manager
+3) cd into the kafka-in-docker/terraform_scripts/kafka directory. Execute ```terraform init```
+4) Make any changes to the main and variables.tf files for VPC names etc
+5) ```terraform apply```
+
+## Checking and Testing the Installation
 Once installed, you'll probably want to check a few things out. Logon to the host via ssh.
 
 **Example EC2 based on ubuntu**
