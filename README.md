@@ -2,7 +2,7 @@
 
 Docker compose file to bring up a Kafka and Zookeeper install for testing purposes. 
 
-This build has been put together as part of the Databricks blog demonstrating a simple architecture for consuming windows endpoint logs into Databricks, using winlogbeats on the endpoint to send sysmon events via kafka. It is read and processed by the notebook [link](https://somelink.com).
+This build has been put together as part of the Databricks blog demonstrating a simple architecture for consuming windows endpoint logs into Databricks, using winlogbeats on the endpoint to send sysmon events via kafka. It is read and processed by the notebook [link](https://github.com/DerekKing001/databricks_cyber_notebooks/blob/master/winlogbeats-kafka-sysmon/winlogbeats-kafka-sysmon-example.py).
 
 You can use it to quickly spin up an instance of kafka for testing purposes. Please DO NOT try using it for production use cases. It works for my simple needs, and will work for readers of the blog researching how to re-create the simple architecture. 
 
